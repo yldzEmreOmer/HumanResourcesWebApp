@@ -1,0 +1,23 @@
+package com.star.humanResourcesProject.business.abstracts;
+
+import java.util.List;
+
+import com.star.humanResourcesProject.business.requests.CreateInventoryRequest;
+import com.star.humanResourcesProject.business.requests.UpdateInventoryRequest;
+import com.star.humanResourcesProject.business.responses.GetAllInventoryResponse;
+import com.star.humanResourcesProject.business.responses.GetByInventoryType;
+
+public interface InventoryService {
+
+	List<GetAllInventoryResponse> getAll();
+	
+	GetByInventoryType getByInventoryType();
+
+	void add(CreateInventoryRequest createInventoryRequest);
+	
+	void update(UpdateInventoryRequest updateInventoryRequest);
+	
+	void delete(int id);
+	
+	
+}

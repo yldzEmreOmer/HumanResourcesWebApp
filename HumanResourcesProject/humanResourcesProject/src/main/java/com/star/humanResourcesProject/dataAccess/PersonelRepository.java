@@ -1,0 +1,14 @@
+package com.star.humanResourcesProject.dataAccess;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.star.humanResourcesProject.entities.concretes.Personel;
+
+public interface PersonelRepository extends JpaRepository<Personel, Integer> {
+
+	List<Personel> getByFirstNameOrLastNameContains(String firstName, String lastName);
+	List<Personel> getByTckn(String tckn);
+	
+}

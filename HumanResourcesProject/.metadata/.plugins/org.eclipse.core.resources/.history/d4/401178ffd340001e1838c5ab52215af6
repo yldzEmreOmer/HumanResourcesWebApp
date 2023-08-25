@@ -1,0 +1,36 @@
+package com.star.humanResourcesProject.business.concretes;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.star.humanResourcesProject.business.abstracts.UserService;
+import com.star.humanResourcesProject.business.requests.CreateUserRequest;
+import com.star.humanResourcesProject.business.responses.GetAllUserResponse;
+import com.star.humanResourcesProject.core.utilities.mappers.ModelMapperService;
+import com.star.humanResourcesProject.dataAccess.UserRepository;
+
+@Service
+public class UserManager implements UserService {
+	
+	private UserRepository userRepository;
+	private ModelMapperService modelMapperService;
+	
+	
+	
+	@Autowired
+	public UserManager(UserRepository userRepository, ModelMapperService modelMapperService) {
+		super();
+		this.userRepository = userRepository;
+		this.modelMapperService = modelMapperService;
+	}
+
+
+	@Override
+	public void add(CreateUserRequest createUserRequest) {
+		
+		
+	}
+
+}

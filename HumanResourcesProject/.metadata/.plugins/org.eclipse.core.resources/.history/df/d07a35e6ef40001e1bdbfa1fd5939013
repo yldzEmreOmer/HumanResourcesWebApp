@@ -1,0 +1,37 @@
+package com.star.humanResourcesProject.business.concretes;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.star.humanResourcesProject.business.abstracts.InventoryService;
+import com.star.humanResourcesProject.business.requests.CreateInventoryRequest;
+import com.star.humanResourcesProject.business.responses.GetAllInventoryResponse;
+import com.star.humanResourcesProject.core.utilities.mappers.ModelMapperService;
+import com.star.humanResourcesProject.dataAccess.InventoryRepository;
+
+public class InventoryManager implements InventoryService {
+
+	private InventoryRepository inventoryRepository;
+	private ModelMapperService modelMapperService;
+
+	@Autowired
+	public InventoryManager(InventoryRepository inventoryRepository, ModelMapperService modelMapperService) {
+		super();
+		this.inventoryRepository = inventoryRepository;
+		this.modelMapperService = modelMapperService;
+	}
+
+	@Override
+	public List<GetAllInventoryResponse> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(CreateInventoryRequest createInventoryRequest) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

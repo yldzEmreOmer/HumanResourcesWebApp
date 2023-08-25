@@ -1,0 +1,43 @@
+package com.star.humanResourcesProject.entities.concretes;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "personel_inventory")
+public class PersonelInventory {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name = "registry_number")
+	private Personel personel;
+	
+	@ManyToOne
+	@JoinColumn(name = "inventory_id")
+	private Inventory inventory;
+	
+	private LocalDate takenDate;
+	
+	private LocalDate givenDate;
+}

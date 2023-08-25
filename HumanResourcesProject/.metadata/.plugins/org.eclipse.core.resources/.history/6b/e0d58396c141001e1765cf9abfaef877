@@ -1,0 +1,5 @@
+package com.star.humanResourcesProject.business.responses;
+
+public class GetByInventoryType {
+
+}

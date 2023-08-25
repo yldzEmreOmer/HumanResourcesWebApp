@@ -1,0 +1,61 @@
+package com.star.humanResourcesProject.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.star.humanResourcesProject.business.abstracts.PersonelService;
+import com.star.humanResourcesProject.business.requests.CreatePersonelRequest;
+import com.star.humanResourcesProject.business.requests.UpdatePersonelRequest;
+import com.star.humanResourcesProject.business.responses.GetAllPersonelResponse;
+import com.star.humanResourcesProject.core.utilities.mappers.ModelMapperService;
+import com.star.humanResourcesProject.dataAccess.PersonelRepository;
+import com.star.humanResourcesProject.entities.concretes.Personel;
+@Service
+public class PersonelManager implements PersonelService{
+
+	private PersonelRepository personelRepository;
+	private ModelMapperService modelMapperService;
+
+	
+
+	@Autowired
+	public PersonelManager(PersonelRepository personelRepository, ModelMapperService modelMapperService) {
+		super();
+		this.personelRepository = personelRepository;
+		this.modelMapperService = modelMapperService;
+	}
+
+	@Override
+	public List<GetAllPersonelResponse> getAll() {
+		List<Personel> personels = personelRepository.findAll();
+
+		List<GetAllPersonelResponse> personelsResponse = personels.stream()
+				.map(personel -> this.modelMapperService.forResponse().map(personel, GetAllPersonelResponse.class))
+				.collect(Collectors.toList());
+		return personelsResponse;
+	}
+
+	@Override
+	public void add( CreatePersonelRequest createPersonelRequest) {
+		Personel personel = this.modelMapperService.forRequest().map(createPersonelRequest, Personel.class);
+		this.personelRepository.save(personel);
+	}
+
+	@Override
+	public void update(UpdatePersonelRequest updatePersonelRequest) {
+		Personel personel = this.modelMapperService.forRequest().map(updatePersonelRequest, Personel.class);
+		this.personelRepository.save(personel);
+		
+	}
+
+	@Override
+	public void delete(int registryNumber) {
+		this.personelRepository.deleteById(registryNumber);
+		
+	}
+
+}
+

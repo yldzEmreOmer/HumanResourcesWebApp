@@ -1,0 +1,9 @@
+package com.star.humanResourcesProject.dataAccess;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.star.humanResourcesProject.entities.concretes.Personel;
+
+public interface PersonelRepository extends JpaRepository<Personel, Integer> {
+
+}

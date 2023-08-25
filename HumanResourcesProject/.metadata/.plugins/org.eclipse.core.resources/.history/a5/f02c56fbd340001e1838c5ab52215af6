@@ -1,0 +1,13 @@
+package com.star.humanResourcesProject.business.abstracts;
+
+import java.util.List;
+
+import com.star.humanResourcesProject.business.requests.CreateUserRequest;
+import com.star.humanResourcesProject.business.responses.GetAllUserResponse;
+
+public interface UserService {
+
+	List<GetAllUserResponse> getAll();
+	
+	void add(CreateUserRequest createUserRequest);
+}

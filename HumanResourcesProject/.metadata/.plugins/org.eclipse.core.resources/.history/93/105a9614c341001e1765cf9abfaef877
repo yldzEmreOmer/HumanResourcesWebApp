@@ -1,0 +1,46 @@
+package com.star.humanResourcesProject.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.star.humanResourcesProject.business.abstracts.InventoryService;
+import com.star.humanResourcesProject.business.requests.CreateInventoryRequest;
+import com.star.humanResourcesProject.business.responses.GetAllInventoryResponse;
+import com.star.humanResourcesProject.core.utilities.mappers.ModelMapperService;
+import com.star.humanResourcesProject.dataAccess.InventoryRepository;
+import com.star.humanResourcesProject.entities.concretes.Inventory;
+
+@Service
+public class InventoryManager implements InventoryService {
+
+	private InventoryRepository inventoryRepository;
+	private ModelMapperService modelMapperService;
+
+	@Autowired
+	public InventoryManager(InventoryRepository inventoryRepository, ModelMapperService modelMapperService) {
+		super();
+		this.inventoryRepository = inventoryRepository;
+		this.modelMapperService = modelMapperService;
+	}
+
+	@Override
+	public List<GetAllInventoryResponse> getAll() {
+		List<Inventory> inventories = inventoryRepository.findAll();
+
+		List<GetAllInventoryResponse> inventoryResponse = inventories.stream()
+				.map(inventory -> this.modelMapperService.forResponse().map(inventory, GetAllInventoryResponse.class))
+				.collect(Collectors.toList());
+		return inventoryResponse;
+	}
+
+	@Override
+	public void add(CreateInventoryRequest createInventoryRequest) {
+		Inventory inventory = this.modelMapperService.forRequest().map(createInventoryRequest, Inventory.class);
+		this.inventoryRepository.save(inventory);
+
+	}
+
+}

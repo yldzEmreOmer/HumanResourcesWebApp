@@ -1,0 +1,20 @@
+package com.star.humanResourcesProject.webApi;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.star.humanResourcesProject.business.abstracts.UserService;
+
+@RestController
+@RequestMapping("/api/user")
+public class UserController {
+
+	private UserService userService;
+
+	public UserController(UserService userService) {
+		super();
+		this.userService = userService;
+	}
+	
+	
+}

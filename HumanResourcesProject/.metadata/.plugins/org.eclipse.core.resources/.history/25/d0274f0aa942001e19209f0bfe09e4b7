@@ -1,0 +1,81 @@
+package com.star.humanResourcesProject.business.concretes;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.star.humanResourcesProject.business.abstracts.PersonelService;
+import com.star.humanResourcesProject.business.requests.CreatePersonelRequest;
+import com.star.humanResourcesProject.business.requests.UpdatePersonelRequest;
+import com.star.humanResourcesProject.business.responses.GetAllPersonelResponse;
+import com.star.humanResourcesProject.core.utilities.mappers.ModelMapperService;
+import com.star.humanResourcesProject.dataAccess.PersonelRepository;
+import com.star.humanResourcesProject.entities.concretes.Personel;
+import com.star.humanResourcesProject.entities.enums.Department;
+import com.star.humanResourcesProject.entities.enums.Gender;
+import com.star.humanResourcesProject.entities.enums.GraduationStatus;
+import com.star.humanResourcesProject.entities.enums.MarialSatus;
+import com.star.humanResourcesProject.entities.enums.Role;
+@Service
+public class PersonelManager implements PersonelService{
+
+	private PersonelRepository personelRepository;
+	private ModelMapperService modelMapperService;
+	
+	Personel personel = new Personel("Emre", "Yıldız", Gender.MALE, LocalDate.now(), MarialSatus.SINGLE, "342197", 1, GraduationStatus.LISANS, Department.YAZILIM_GELISTIRME, Role.YAZILIM_GELİŞTİRME_UZMANI, true, LocalDate.now(), Role.YAZILIM_GELİŞTİRME_UZMANI, Department.YAZILIM_GELISTIRME, null, null, null);
+
+	
+
+	@Autowired
+	public PersonelManager(PersonelRepository personelRepository, ModelMapperService modelMapperService) {
+		super();
+		this.personelRepository = personelRepository;
+		this.modelMapperService = modelMapperService;
+	}
+
+	@Override
+	public List<GetAllPersonelResponse> getAll() {
+		List<Personel> personels = personelRepository.findAll();
+
+		List<GetAllPersonelResponse> personelsResponse = personels.stream()
+				.map(personel -> this.modelMapperService.forResponse().map(personel, GetAllPersonelResponse.class))
+				.collect(Collectors.toList());
+		return personelsResponse;
+	}
+
+	@Override
+	public void add( CreatePersonelRequest createPersonelRequest) {
+		Personel personel = this.modelMapperService.forRequest().map(createPersonelRequest, Personel.class);
+		this.personelRepository.save(personel);
+	}
+
+	@Override
+	public void update(UpdatePersonelRequest updatePersonelRequest) {
+		Personel personel = this.modelMapperService.forRequest().map(updatePersonelRequest, Personel.class);
+		this.personelRepository.save(personel);
+		
+	}
+
+	@Override
+	public void delete(int registryNumber) {
+		this.personelRepository.deleteById(registryNumber);
+		
+	}
+
+	@Override
+	public List<Personel> getByFirstNameOrLastNameContains(String firstName, String lastName) {
+		
+		return this.personelRepository.getByFirstNameOrLastNameContains(firstName, lastName);
+	}
+
+	@Override
+	public List<Personel> getByTckn(String tckn) {
+	
+		return this.personelRepository.getByTckn(tckn);
+	}
+
+}
+

@@ -1,0 +1,13 @@
+package com.star.humanResourcesProject.business.abstracts;
+
+import java.util.List;
+
+import com.star.humanResourcesProject.business.requests.CreateInventoryRequest;
+import com.star.humanResourcesProject.business.responses.GetAllInventoryResponse;
+
+public interface InventoryService {
+
+	List<GetAllInventoryResponse> getAll();
+
+	void add(CreateInventoryRequest createInventoryRequest);
+}

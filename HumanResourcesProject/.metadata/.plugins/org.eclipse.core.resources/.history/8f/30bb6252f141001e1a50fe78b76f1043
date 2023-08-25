@@ -1,0 +1,24 @@
+package com.star.humanResourcesProject.dataAccess;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.star.humanResourcesProject.business.requests.CreateInventoryRequest;
+import com.star.humanResourcesProject.business.requests.UpdateInventoryRequest;
+import com.star.humanResourcesProject.business.responses.GetAllInventoryResponse;
+import com.star.humanResourcesProject.entities.concretes.Inventory;
+import com.star.humanResourcesProject.entities.enums.InventoryType;
+
+public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
+
+List<GetAllInventoryResponse> getAll();
+	
+	List<Inventory> getByInventoryType(InventoryType inventoryType);
+
+	void add(CreateInventoryRequest createInventoryRequest);
+	
+	void update(UpdateInventoryRequest updateInventoryRequest);
+	
+	void delete(int id);
+}

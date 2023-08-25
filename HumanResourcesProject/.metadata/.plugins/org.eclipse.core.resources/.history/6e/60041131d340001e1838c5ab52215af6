@@ -1,0 +1,5 @@
+package com.star.humanResourcesProject.core.utilities.mappers;
+
+public class ModelMapperManager {
+
+}

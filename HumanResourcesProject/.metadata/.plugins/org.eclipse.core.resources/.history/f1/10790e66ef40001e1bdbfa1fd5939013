@@ -1,0 +1,18 @@
+package com.star.humanResourcesProject.business.responses;
+
+import java.time.LocalDate;
+
+import com.star.humanResourcesProject.entities.enums.InventoryStatus;
+import com.star.humanResourcesProject.entities.enums.InventoryType;
+
+public class GetAllInventoryResponse {
+
+	private InventoryType type;
+
+	private String brand;
+
+	private String model;
+
+	private int serialNumber;
+
+}

@@ -1,0 +1,7 @@
+package com.star.humanResourcesProject.business.concretes;
+
+import com.star.humanResourcesProject.business.abstracts.InventoryService;
+
+public class InventoryManager implements InventoryService{
+
+}

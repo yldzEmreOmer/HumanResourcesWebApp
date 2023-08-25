@@ -1,0 +1,9 @@
+package com.star.humanResourcesProject.dataAccess;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.star.humanResourcesProject.entities.concretes.Inventory;
+
+public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
+
+}

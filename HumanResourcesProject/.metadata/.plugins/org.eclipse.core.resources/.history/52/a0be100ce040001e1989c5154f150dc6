@@ -1,0 +1,5 @@
+package com.star.humanResourcesProject.entities.concretes;
+
+public class Personel {
+
+}

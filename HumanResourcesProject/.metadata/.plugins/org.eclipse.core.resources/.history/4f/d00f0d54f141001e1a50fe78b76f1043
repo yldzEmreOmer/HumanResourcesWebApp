@@ -1,0 +1,17 @@
+package com.star.humanResourcesProject.business.abstracts;
+
+import java.util.List;
+
+import com.star.humanResourcesProject.entities.concretes.Inventory;
+import com.star.humanResourcesProject.entities.enums.InventoryType;
+
+	public interface InventoryService {
+
+	
+	
+	List<Inventory> getByInventoryType(InventoryType inventoryType);
+
+	
+	
+	
+}

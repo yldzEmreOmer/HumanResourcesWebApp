@@ -1,0 +1,34 @@
+package com.star.humanResourcesProject.business.abstracts;
+
+import java.time.LocalDate;
+
+import com.star.humanResourcesProject.entities.enums.InventoryStatus;
+import com.star.humanResourcesProject.entities.enums.InventoryType;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
+public interface InventoryService {
+
+private InventoryType type;
+	
+	
+	private LocalDate enterDay;
+	
+	
+	private String brand;
+	
+	
+	private String model;
+	
+	
+	private int serialNumber;
+	
+	
+	
+	private InventoryStatus status;
+	
+	
+	private boolean canBeTaken;
+}
